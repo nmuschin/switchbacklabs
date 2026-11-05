@@ -41,6 +41,10 @@ tools/build.sh
 
 The script downloads Plus Jakarta Sans into `tools/.fonts/` (git-ignored), outlines the wordmarks, renders the PNGs in headless Chromium, builds the favicons and re-zips both kits.
 
+## Studio to-do list
+
+`TODO.md` is the combined, prioritized to-do list across every app repo. Tick items off there as they're done.
+
 ## Adding an app
 
 Copy one `<li class="app">` block in `index.html`, then add a 256×256 PNG icon in `assets/apps/`. Apps without an icon yet can use the `icon-placeholder` block, as Bellwether does.
