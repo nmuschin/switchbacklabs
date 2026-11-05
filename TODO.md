@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-05, after QuoteBloom#1 merged) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. None of the 12 repos has open GitHub issues or PRs, so everything here comes from those files.
+Built on 2026-11-05 (last updated 2026-11-05, after QuoteBloom#1 merged) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -98,6 +98,23 @@ Every module in `PLAN.md`'s build order is built, and there's no open backlog.
 - [ ] Try it with a real class or a teacher, and collect what's missing 🧑
 - [ ] Link-preview image, once you share the production URL 🤖
 
+### 12. Netmap (Mac + iPhone network scanner)
+Phases 1–3 are written (presence monitoring for the Home Assistant Pi, history, notifications, both apps, iCloud sync with push alerts, and the general scanner) but **have never been compiled**: it was written without a Swift toolchain, and the logic was checked by mirroring it in Python (~160 checks).
+- [ ] Confirm the assumptions on your network first: `arp -an`, `dns-sd -B _home-assistant._tcp .`, `nc -vz <pi-ip> 8123`, and note the Pi's MAC on both wired and Wi-Fi (README, "Before building") 🧑
+- [ ] First build: `xcodegen generate`, then `swift build` / `swift test`, and fix the compile errors. Most likely in `ICMPProbe`, `TCPConnectProbe`, the `#Predicate` macros and the SwiftUI views 🤝
+- [ ] iCloud setup per `docs/CLOUDKIT.md`: container ID, the queryable index, deploy the schema to Production, APNs environment 🧑
+- [ ] Wire the scan screens (`ScanView`, `ScanResultsView`, `ScanDiffView`) into both apps' navigation 🤖
+- [ ] App icons and asset catalogs 🤝
+- [ ] Phase 4: the nmap engine and privileged helper (`ScanProfile` already builds the commands) 🤖
+- [ ] Phase 5: a headless watcher executable (`NetmapWatch` is already UI-free) 🤖
+- [ ] Later: the full IEEE vendor list instead of the seed `OUIDatabase`, and two-way device-settings sync 🤖
+
+## Other repos
+
+### diabetes-project
+Only a README so far: "Project looking at the cost of diabetes and the shift to GLP-1 usage." Not an app, so it's kept off the studio site.
+- [ ] Decide the question, the data sources and the output (report, notebook or dashboard), then add a plan to the repo 🤝
+
 ## Studio (Switchback Labs)
 
 - [ ] **Privacy policy and support pages.** Written in nmuschin/switchbacklabs#3 (draft) for QuoteBloom, FuelTrack, DateGlow, Bellwether, MarkdownDoctor and CellarStories, plus `/support.html`. Waiting on a contact email to replace the `CONTACT_EMAIL` placeholder. 🧑
@@ -113,4 +130,4 @@ Every module in `PLAN.md`'s build order is built, and there's no open backlog.
 2. Start the Apple paperwork that has lead time, all at once: the Developer ID certificate, the notarytool profile, and App Store Connect records for HLB, QuoteBloom, CellarStories and FuelTrack. Deploy FuelTrack's CloudKit schema.
 3. Pick a contact email so the privacy and support pages (switchbacklabs#3) can go live; every submission then has its URLs.
 4. Ship in this order: **High Low Buffalo → QuoteBloom → Cite It Right → CellarStories → MarkdownDoctor → FuelTrack**. Each one needs mostly screenshots and a listing, and they share the same App Store Connect steps, so doing them back to back is quickest.
-5. Then feature work: the JobTrack channel decision and 0.6 polish, DateGlow widgets, and the Bellwether icon and schedule import.
+5. Then feature work: the JobTrack channel decision and 0.6 polish, DateGlow widgets, the Bellwether icon and schedule import, and Netmap's first build.
