@@ -73,6 +73,44 @@ h2 { margin: 0 0 24px; font-size: 1.75rem; font-weight: 800; letter-spacing: -0.
 .about { padding-top: 72px; padding-bottom: 72px; }
 .about p { max-width: 38em; font-size: 1.1rem; color: var(--gray); }
 
+/* Brand page */
+nav a[aria-current="page"] { color: var(--ink); }
+.hero-compact { padding-top: 40px; padding-bottom: 40px; }
+.kit { padding-top: 32px; padding-bottom: 40px; }
+.kit + .kit { border-top: 1px solid var(--border); }
+.kit-head { display: flex; gap: 18px; align-items: center; margin-bottom: 20px; }
+.kit-head h2 { margin: 0 0 4px; }
+.kit-head p { margin: 0; max-width: 40em; color: var(--gray); }
+.kit-tile { flex: 0 0 72px; border-radius: 16px; box-shadow: 0 6px 18px rgba(22, 23, 27, 0.18); }
+
+.downloads { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+.button { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; border: 1px solid var(--border); border-radius: 12px; background: var(--card); color: var(--ink); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+.button:hover { border-color: var(--indigo); color: var(--ink); }
+.button.primary { background: #2f38c8; border-color: #2f38c8; color: #ffffff; }
+.button.primary:hover { background: #262eaa; color: #ffffff; }
+
+.previews { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 0 0 24px; }
+.preview { margin: 0; min-height: 160px; padding: 28px 24px 16px; border-radius: 20px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+.preview img { max-width: 100%; height: auto; }
+.preview.light { background: #ffffff; border: 1px solid #e4e5ea; }
+.preview.dark { background: #16171b; border: 1px solid #2e3038; }
+.preview figcaption { font-size: 0.8rem; font-weight: 600; color: #55575e; }
+.preview.dark figcaption { color: #a4a7ae; }
+.size-row { display: flex; align-items: flex-end; gap: 18px; }
+.size-row img:first-child { border-radius: 14px; }
+
+.swatches { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.swatches li { display: flex; flex-direction: column; gap: 2px; font-size: 0.9rem; }
+/* Every chip gets a hairline, so ink stays visible on the dark theme and paper on the light one. */
+.chip { display: block; height: 56px; border-radius: 12px; margin-bottom: 6px; box-shadow: inset 0 0 0 1px var(--border); }
+.swatches code { color: var(--gray); font-size: 0.85rem; }
+
+.usage { padding-top: 40px; padding-bottom: 72px; border-top: 1px solid var(--border); }
+.usage ul { margin: 0 0 20px; padding-left: 1.2em; max-width: 44em; color: var(--gray); }
+.usage li { margin-bottom: 8px; }
+.usage b { color: var(--ink); }
+.fineprint { max-width: 44em; font-size: 0.9rem; color: var(--gray); }
+
 /* Footer */
 .site-footer { border-top: 1px solid var(--border); padding: 28px 0 40px; }
 .footer-row { display: flex; align-items: center; gap: 12px; }
