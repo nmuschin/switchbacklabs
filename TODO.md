@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-05, after QuoteBloom#1 merged) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
+Built on 2026-11-05 (last updated 2026-11-05, adding a week-by-week plan, a shared App Store checklist and missing CloudKit steps) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -19,6 +19,12 @@ Built on 2026-11-05 (last updated 2026-11-05, after QuoteBloom#1 merged) from ev
 - [ ] **Waymark Study: password-reset emails only reach your own address.** The sending domain `updates.waymarkstudy.com` is already verified in Resend (checked 2026-11-05), so what's left is setting `MAIL_FROM="Waymark Study <no-reply@updates.waymarkstudy.com>"` on the host, plus `APP_URL` as the production URL (link previews need it), then redeploying. 🧑
 - [x] **QuoteBloom: `TODO.md` was copied into the app bundle.** Fixed in nmuschin/QuoteBloom#1, merged 2026-11-05. The same PR fixed the macOS build: the iOS-only widget is now embedded only in the iOS build. Confirmed in Xcode on iOS and macOS. 🤝
 
+## Decide this week (these have lead time and block several launches)
+
+- [ ] **Publish as yourself or as a company?** The App Store shows the developer's legal name. An individual Apple Developer account shows your personal name; showing a studio name needs an organization account, which requires a legal entity (such as an LLC) and a free D-U-N-S number, and that can take a week or two. Decide before the first submission, because changing the seller later means transferring every app. 🧑
+- [ ] **Studio name and domain** (Saturday's reminder). It feeds the developer name, the contact email for the privacy and support pages, and the website address. 🧑
+- [ ] **Start the Apple paperwork in one sitting:** the Developer ID certificate and `notarytool` profile (MarkdownDoctor), and App Store Connect records for High Low Buffalo, QuoteBloom, CellarStories and FuelTrack. 🧑
+
 ## Tier 1 — Ship what's built (closest to the finish line)
 
 ### 1. High Low Buffalo for iPhone
@@ -34,6 +40,7 @@ Web is live. iOS milestones I0–I6 and Phase 2 (Friends, History, Settings, Wid
 Everything for 1.0 is done except the listing.
 - [ ] Screenshots (iPhone, iPad, Mac) 🧑
 - [ ] Description, using the draft in `docs/app-store-listing.md` 🤝
+- [ ] Deploy the CloudKit schema from Development to Production in the CloudKit Dashboard, so iCloud sync works in the App Store build 🧑
 - [ ] Privacy policy page declaring CloudKit and local notifications: `/privacy/quotebloom.html` in switchbacklabs#3 🤝
 - [ ] Optional, after launch: a Mac widget. The widget code already handles macOS; the target needs macOS added, the App Sandbox entitlement and the Mac runpath. 🤖
 
@@ -48,6 +55,7 @@ Web went live on Oct 20. The iOS app is feature-complete for 1.0.
 - [ ] Import your real journal (`.winenote` → `/import`) and check scores and photos survive, and that re-imports don't duplicate 🧑
 - [ ] Re-run the acceptance test live with a friend on a real phone 🧑
 - [ ] Test CloudKit sync across iPhone ⇄ iPhone and iPhone ⇄ Mac 🧑
+- [ ] Deploy the CloudKit schema from Development to Production before submitting 🧑
 - [ ] Submit iOS: App Store Connect record, screenshots, privacy policy URL, 17+ age rating (alcohol) 🧑
 - [ ] Decide on an app icon (it was on the "revise later" list) 🤝
 
@@ -57,6 +65,7 @@ All engineering for 1.0 is done. `Scripts/release.sh` archives, signs, notarizes
 - [ ] Create a `notarytool` keychain profile (needs an app-specific password) 🧑
 - [ ] App Store Connect record + name reservation, if you want the Mac App Store too 🧑
 - [ ] Metadata: screenshots, description, keywords, support URL 🤝
+- [ ] Pick where the notarized DMG is downloaded from (a GitHub Release, or a download link on the studio site) and add it to the app grid 🤝
 
 ### 6. FuelTrack
 The 1.0 build settings, privacy manifest and validation are done.
@@ -74,12 +83,14 @@ The 1.0 build settings, privacy manifest and validation are done.
 - [ ] 0.6 polish: searchable text, help documentation, the toolbar margin TODO in `JobDetailView.swift`, two-pane layout for the views that show "No Job Selected", accessibility, Spanish to 100% 🤖
 - [ ] Fix the broken `defaultsAreOpeningAndFourBeats` test (TODO in `JobTrackTests.swift`) 🤖
 - [ ] Local notifications for follow-ups and interview dates 🤖
+- [ ] Deploy the CloudKit schema to Production before shipping beyond your own Mac 🧑
 - [ ] Per-job "why this score" view built on the `FitScorer` details 🤖
 - [ ] 0.7 automation round-trip (skill, scheduled search, a discoverable sync folder) → 0.8 charts → 0.9 generalize for other users (remove the MSL-specific language) 🤝
 
 ### 8. DateGlow
 - [ ] 0.6: App Group + shared store, a widget target, iOS and Mac widgets, widget deep links, tappable menu bar rows 🤖
 - [ ] Fill in 0.7–1.0 (currently empty) and an App Store checklist like FuelTrack's 🤝
+- [ ] Deploy the CloudKit schema to Production before its first release 🧑
 
 ### 9. Bellwether (iPhone + Watch)
 - [ ] An app icon (it has none yet) 🤝
@@ -124,10 +135,61 @@ Only a README so far: "Project looking at the cost of diabetes and the shift to 
 
 ---
 
-## Suggested order for the next two weeks
+## Plan to finish (week by week)
 
-1. Tier 0: fix Waymark's reset email (set `MAIL_FROM` and `APP_URL`, then redeploy). The QuoteBloom fix is merged.
-2. Start the Apple paperwork that has lead time, all at once: the Developer ID certificate, the notarytool profile, and App Store Connect records for HLB, QuoteBloom, CellarStories and FuelTrack. Deploy FuelTrack's CloudKit schema.
-3. Pick a contact email so the privacy and support pages (switchbacklabs#3) can go live; every submission then has its URLs.
-4. Ship in this order: **High Low Buffalo → QuoteBloom → Cite It Right → CellarStories → MarkdownDoctor → FuelTrack**. Each one needs mostly screenshots and a listing, and they share the same App Store Connect steps, so doing them back to back is quickest.
-5. Then feature work: the JobTrack channel decision and 0.6 polish, DateGlow widgets, the Bellwether icon and schedule import, and Netmap's first build.
+Rough times, assuming evenings and weekends. Each week ends with something shipped or submitted. If a week slips, push the whole plan back a week rather than starting the next app early.
+
+### Week 1 · Nov 5–8 · decisions and paperwork (~3 h)
+1. Waymark Study: set `MAIL_FROM` and `APP_URL` on the host and redeploy (15 min).
+2. Decide: individual or company developer account, and the studio name and domain. Start a D-U-N-S request if going the company route.
+3. Apple paperwork in one sitting: Developer ID certificate, `notarytool` profile, and App Store Connect records for HLB, QuoteBloom, CellarStories and FuelTrack (1–2 h).
+4. Deploy CloudKit schemas to Production for QuoteBloom, FuelTrack, DateGlow and CellarStories (about 10 min each).
+
+### Week 2 · Nov 9–15 · High Low Buffalo and QuoteBloom (~6 h)
+1. HLB: TestFlight upload, demo account, review notes, screenshots, submit.
+2. QuoteBloom: screenshots for iPhone, iPad and Mac, description from the draft, submit.
+3. Studio: once the contact email is chosen, merge the privacy and support pages so both apps have their URLs.
+
+### Week 3 · Nov 16–22 · Cite It Right and MarkdownDoctor (~6 h)
+1. Cite It Right: first phase-6 build in Xcode, camera test on a real iPhone, TestFlight.
+2. MarkdownDoctor: run `Scripts/release.sh`, publish the DMG, add it to the site.
+
+### Week 4 · Nov 23–29 · CellarStories (lighter week: Thanksgiving)
+1. Import your real journal, run the live acceptance test with a friend, test iCloud sync across devices.
+2. Screenshots, 17+ age rating, submit.
+
+### Week 5 · Nov 30–Dec 6 · FuelTrack
+1. Check receipt scanning and CSV import, fix the slow first switch to Map or Stats, more parser test fixtures.
+2. Check the icon at every size, screenshots, submit.
+
+### December · feature work
+JobTrack's distribution decision and 0.6 polish, DateGlow widgets, the Bellwether icon and schedule import, and Netmap's first build.
+
+## App Store submission checklist (use for every app)
+
+- [ ] Bundle ID registered, and the App Store Connect record created
+- [ ] Version and build number bumped; export-compliance answer set (`ITSAppUsesNonExemptEncryption`)
+- [ ] Privacy manifest (`PrivacyInfo.xcprivacy`) present in the app and each extension
+- [ ] iCloud apps: CloudKit schema deployed to Production
+- [ ] Privacy policy URL and support URL (the studio site's `/privacy/<app>.html` and `/support.html`)
+- [ ] App Privacy "nutrition label" filled in, matching the privacy policy
+- [ ] Age rating questionnaire
+- [ ] Screenshots: the largest iPhone (6.9", 1320 × 2868), 13" iPad (2064 × 2752) if it runs on iPad, and a Mac size (such as 2880 × 1800) for Mac apps. Check App Store Connect for the current list.
+- [ ] Name, subtitle, description, keywords, promotional text
+- [ ] Apps with sign-in: a demo account and review notes explaining account deletion, reporting and blocking
+- [ ] Archive, upload, test it yourself in TestFlight, then submit
+
+## Tips for finishing on time
+
+- **One app in flight at a time.** Finish its submission before starting the next; a half-submitted app costs more to pick back up than it saves.
+- **Batch the same kind of work.** All App Store Connect records in one sitting, all screenshots in another. In the Simulator, `xcrun simctl io booted screenshot shot.png` saves a full-resolution screenshot.
+- **Ask Claude for the text.** Listings, review notes and release notes can be drafted from each repo's README and docs; you edit and paste.
+- **Keep this file current.** Tick items off as they land and print a fresh copy each week; it's the one list.
+- **Expect one App Review round-trip.** First submissions are often rejected once for something small, like a missing demo account or a privacy-label mismatch. Leave a few days of slack before any date that matters.
+
+## Quick reference
+
+- Studio site: https://nmuschin.github.io/switchbacklabs/ (brand page at `/brand.html`)
+- Live web apps: High Low Buffalo at https://www.highlowbuffaloapp.com, CellarStories at https://cellarstories.app, Cite It Right at https://citeitright.org
+- Email (Resend, sending only): `updates.cellarstories.app`, `updates.waymarkstudy.com`, `highlowbuffaloapp.com`. `hello@highlowbuffaloapp.com` forwards to Gmail.
+- iCloud apps that need a CloudKit schema in Production: QuoteBloom, FuelTrack, DateGlow, CellarStories, JobTrack, Netmap.
