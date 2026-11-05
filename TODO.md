@@ -16,7 +16,7 @@ Built on 2026-11-05 from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, R
 ## Tier 0 — Fix now (people can hit these today)
 
 - [x] **CellarStories: the "Continue with Apple" button.** Already hidden since 2026-10-20 behind `APPLE_SIGN_IN_ENABLED = false`; its `TODO.md` was out of date (fixed in nmuschin/CellarStories#1). To bring it back: configure the Apple provider (`docs/deployment-guide.md` C3), then flip the flag. 🧑
-- [ ] **Waymark Study: password-reset emails only reach your own address.** Verify a sending domain in Resend and set `MAIL_FROM`. The roadmap calls this the one thing stopping other people from using it. Also confirm `APP_URL` is the production URL, which link previews now need. 🧑
+- [ ] **Waymark Study: password-reset emails only reach your own address.** The sending domain `updates.waymarkstudy.com` is already verified in Resend (checked 2026-11-05), so what's left is setting `MAIL_FROM="Waymark Study <no-reply@updates.waymarkstudy.com>"` on the host, plus `APP_URL` as the production URL (link previews need it), then redeploying. 🧑
 - [ ] **QuoteBloom: `TODO.md` is copied into the app bundle.** Removed from the target's Copy Bundle Resources in nmuschin/QuoteBloom#1. Build once in Xcode to confirm, then merge. 🧑
 
 ## Tier 1 — Ship what's built (closest to the finish line)
