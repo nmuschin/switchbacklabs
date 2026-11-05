@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. None of the 12 repos has open GitHub issues or PRs, so everything here comes from those files.
+Built on 2026-11-05 (last updated 2026-11-05, after QuoteBloom#1 merged) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. None of the 12 repos has open GitHub issues or PRs, so everything here comes from those files.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -17,7 +17,7 @@ Built on 2026-11-05 from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, R
 
 - [x] **CellarStories: the "Continue with Apple" button.** Already hidden since 2026-10-20 behind `APPLE_SIGN_IN_ENABLED = false`; its `TODO.md` was out of date (fixed in nmuschin/CellarStories#1). To bring it back: configure the Apple provider (`docs/deployment-guide.md` C3), then flip the flag. 🧑
 - [ ] **Waymark Study: password-reset emails only reach your own address.** The sending domain `updates.waymarkstudy.com` is already verified in Resend (checked 2026-11-05), so what's left is setting `MAIL_FROM="Waymark Study <no-reply@updates.waymarkstudy.com>"` on the host, plus `APP_URL` as the production URL (link previews need it), then redeploying. 🧑
-- [ ] **QuoteBloom: `TODO.md` is copied into the app bundle.** Removed from the target's Copy Bundle Resources in nmuschin/QuoteBloom#1. Build once in Xcode to confirm, then merge. 🧑
+- [x] **QuoteBloom: `TODO.md` was copied into the app bundle.** Fixed in nmuschin/QuoteBloom#1, merged 2026-11-05. The same PR fixed the macOS build: the iOS-only widget is now embedded only in the iOS build. Confirmed in Xcode on iOS and macOS. 🤝
 
 ## Tier 1 — Ship what's built (closest to the finish line)
 
@@ -35,6 +35,7 @@ Everything for 1.0 is done except the listing.
 - [ ] Screenshots (iPhone, iPad, Mac) 🧑
 - [ ] Description, using the draft in `docs/app-store-listing.md` 🤝
 - [ ] Privacy policy page declaring CloudKit and local notifications: `/privacy/quotebloom.html` in switchbacklabs#3 🤝
+- [ ] Optional, after launch: a Mac widget. The widget code already handles macOS; the target needs macOS added, the App Sandbox entitlement and the Mac runpath. 🤖
 
 ### 3. Cite It Right (Apple app)
 Phases 1–5 are merged. Phase 6 (Spanish, accessibility, icon, TestFlight prep) is written and waiting for its first Xcode build.
@@ -108,7 +109,7 @@ Every module in `PLAN.md`'s build order is built, and there's no open backlog.
 
 ## Suggested order for the next two weeks
 
-1. Tier 0: confirm QuoteBloom#1 in Xcode and merge it, and fix Waymark's reset email.
+1. Tier 0: fix Waymark's reset email (set `MAIL_FROM` and `APP_URL`, then redeploy). The QuoteBloom fix is merged.
 2. Start the Apple paperwork that has lead time, all at once: the Developer ID certificate, the notarytool profile, and App Store Connect records for HLB, QuoteBloom, CellarStories and FuelTrack. Deploy FuelTrack's CloudKit schema.
 3. Pick a contact email so the privacy and support pages (switchbacklabs#3) can go live; every submission then has its URLs.
 4. Ship in this order: **High Low Buffalo → QuoteBloom → Cite It Right → CellarStories → MarkdownDoctor → FuelTrack**. Each one needs mostly screenshots and a listing, and they share the same App Store Connect steps, so doing them back to back is quickest.
