@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-05, adding the shared working preferences in every repo, branch clean-up and the HLB icon options) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
+Built on 2026-11-05 (last updated 2026-11-06: HLB's new icon landed) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -34,7 +34,8 @@ Web is live. iOS milestones I0–I6 and Phase 2 (Friends, History, Settings, Wid
 - [ ] App Review notes: delete account, report and block paths (draft in `PLAN-ios.md` §8) 🤝
 - [ ] Screenshots + the privacy "nutrition label" (email, name, user content, no tracking) 🧑
 - [ ] Check `APNS_KEY_ID` / `APNS_PRIVATE_KEY` are in Vercel, or no push is sent 🧑
-- [ ] Choose the icon: 1 · same bison on a terracotta gradient tile, 2 · option 1 with a trail stop on each horn tip (High and Low), or 3 · a new High → Low → Buffalo trail mark like Waymark's. All three are on the branding canvas 🧑
+- [x] Icon: the same bison on a terracotta gradient tile (option 1, kept simple while the studio name may still change). Merged in nmuschin/HighLowBuffalo#20 on 2026-11-06 🤝
+- [ ] Check the new icon on your Mac: the in-app logo on the Welcome screen shows the gradient (not a flat or black tile), the Home Screen app icon, and the favicon on the live site in a private window 🧑
 
 ### 2. QuoteBloom
 Everything for 1.0 is done except the listing.
@@ -130,9 +131,9 @@ Only a README so far: "Project looking at the cost of diabetes and the shift to 
 
 - [ ] **Privacy policy and support pages.** Written in nmuschin/switchbacklabs#3 (draft) for QuoteBloom, FuelTrack, DateGlow, Bellwether, MarkdownDoctor and CellarStories, plus `/support.html`. Waiting on a contact email to replace the `CONTACT_EMAIL` placeholder. 🧑
 - [ ] Add App Store and website links to the app grid as each app ships 🤖
-- [ ] Branding round, as planned: the HLB icon choice, plus icons for Bellwether and CellarStories 🤝
+- [ ] Branding round, as planned: icons for Bellwether and CellarStories (HLB's is done) 🤝
 - [x] **Shared working preferences in every repo.** A short "Working preferences" section in each of the 14 repos' `CLAUDE.md`, pointing at the full version in nmuschin/CodeAI. Merged 2026-11-05. 🤖
-- [ ] Delete the leftover branches (the "Delete branch" button on each merged PR; I can't delete branches from a session): `claude/studio-site`, `claude/brand-resources` (switchbacklabs), `claude/waymark-brand-icons` (waymarkstudy), `claude/working-preferences` in the 13 other repos, and `claude/eloquent-curie-sw2h86` (ClassroomDesigner). 🧑
+- [ ] Delete the leftover branches (the "Delete branch" button on each merged PR; I can't delete branches from a session): `claude/studio-site`, `claude/brand-resources` (switchbacklabs), `claude/waymark-brand-icons` (waymarkstudy), `claude/todo-update-nov5` and `claude/todo-hlb-icon` (switchbacklabs), `claude/working-preferences` in the 13 other repos, `claude/hlb-gradient-tile` (HLB), `claude/hlb-nickname` (CodeAI) and `claude/eloquent-curie-sw2h86` (ClassroomDesigner). 🧑
 - [ ] Netmap's default branch is `claude/confident-bohr-i73ycp`: rename it to `main` (Settings → Branches) 🧑
 
 ---
