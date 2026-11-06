@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-05, adding a week-by-week plan, a shared App Store checklist and missing CloudKit steps) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
+Built on 2026-11-05 (last updated 2026-11-05, adding the shared working preferences in every repo, branch clean-up and the HLB icon options) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -27,14 +27,14 @@ Built on 2026-11-05 (last updated 2026-11-05, adding a week-by-week plan, a shar
 
 ## Tier 1 — Ship what's built (closest to the finish line)
 
-### 1. High Low Buffalo for iPhone
+### 1. High Low Buffalo (HLB) for iPhone
 Web is live. iOS milestones I0–I6 and Phase 2 (Friends, History, Settings, Widget) are built, and the listing text was committed on Oct 29.
 - [ ] App Store Connect app record + a demo account for App Review 🧑
 - [ ] First TestFlight upload (`ios/README.md`) 🧑
 - [ ] App Review notes: delete account, report and block paths (draft in `PLAN-ios.md` §8) 🤝
 - [ ] Screenshots + the privacy "nutrition label" (email, name, user content, no tracking) 🧑
 - [ ] Check `APNS_KEY_ID` / `APNS_PRIVATE_KEY` are in Vercel, or no push is sent 🧑
-- [ ] Choose the icon direction from the three options on the canvas (branding round) 🧑
+- [ ] Choose the icon: 1 · same bison on a terracotta gradient tile, 2 · option 1 with a trail stop on each horn tip (High and Low), or 3 · a new High → Low → Buffalo trail mark like Waymark's. All three are on the branding canvas 🧑
 
 ### 2. QuoteBloom
 Everything for 1.0 is done except the listing.
@@ -130,8 +130,10 @@ Only a README so far: "Project looking at the cost of diabetes and the shift to 
 
 - [ ] **Privacy policy and support pages.** Written in nmuschin/switchbacklabs#3 (draft) for QuoteBloom, FuelTrack, DateGlow, Bellwether, MarkdownDoctor and CellarStories, plus `/support.html`. Waiting on a contact email to replace the `CONTACT_EMAIL` placeholder. 🧑
 - [ ] Add App Store and website links to the app grid as each app ships 🤖
-- [ ] Branding round, as planned: the HighLowBuffalo icon choice, plus icons for Bellwether and CellarStories 🤝
-- [ ] Delete the leftover branches `claude/studio-site`, `claude/brand-resources` (switchbacklabs) and `claude/waymark-brand-icons` (waymarkstudy). I can't delete branches from a session. 🧑
+- [ ] Branding round, as planned: the HLB icon choice, plus icons for Bellwether and CellarStories 🤝
+- [x] **Shared working preferences in every repo.** A short "Working preferences" section in each of the 14 repos' `CLAUDE.md`, pointing at the full version in nmuschin/CodeAI. Merged 2026-11-05. 🤖
+- [ ] Delete the leftover branches (the "Delete branch" button on each merged PR; I can't delete branches from a session): `claude/studio-site`, `claude/brand-resources` (switchbacklabs), `claude/waymark-brand-icons` (waymarkstudy), `claude/working-preferences` in the 13 other repos, and `claude/eloquent-curie-sw2h86` (ClassroomDesigner). 🧑
+- [ ] Netmap's default branch is `claude/confident-bohr-i73ycp`: rename it to `main` (Settings → Branches) 🧑
 
 ---
 
