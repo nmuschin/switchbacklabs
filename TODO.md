@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-08: Waymark email was already set up) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
+Built on 2026-11-05 (last updated 2026-11-08: Waymark email was already set up; CloudKit schemas deployed for FuelTrack, DateGlow and CellarStories) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -41,7 +41,7 @@ Web is live. iOS milestones I0–I6 and Phase 2 (Friends, History, Settings, Wid
 Everything for 1.0 is done except the listing.
 - [ ] Screenshots (iPhone, iPad, Mac) 🧑
 - [ ] Description, using the draft in `docs/app-store-listing.md` 🤝
-- [ ] Deploy the CloudKit schema from Development to Production in the CloudKit Dashboard, so iCloud sync works in the App Store build 🧑
+- [ ] CloudKit schema to Production. Not done yet: as of 2026-11-08 Development only has the built-in `Users` type, because no development build has synced yet. QuoteBloom calls CloudKit directly, so its types are `UserQuote` and `Favorite` (no `CD_` prefix). Steps: run a debug build signed into iCloud, add a quote and favorite a built-in one; then in Development add a **QUERYABLE** index on `recordName` for both types (the app's fetch-all queries fail without it); then Deploy Schema Changes 🧑
 - [ ] Privacy policy page declaring CloudKit and local notifications: `/privacy/quotebloom.html` in switchbacklabs#3 🤝
 - [ ] Optional, after launch: a Mac widget. The widget code already handles macOS; the target needs macOS added, the App Sandbox entitlement and the Mac runpath. 🤖
 
@@ -56,7 +56,7 @@ Web went live on Oct 20. The iOS app is feature-complete for 1.0.
 - [ ] Import your real journal (`.winenote` → `/import`) and check scores and photos survive, and that re-imports don't duplicate 🧑
 - [ ] Re-run the acceptance test live with a friend on a real phone 🧑
 - [ ] Test CloudKit sync across iPhone ⇄ iPhone and iPhone ⇄ Mac 🧑
-- [ ] Deploy the CloudKit schema from Development to Production before submitting 🧑
+- [x] Deploy the CloudKit schema from Development to Production (done 2026-11-08) 🧑
 - [ ] Submit iOS: App Store Connect record, screenshots, privacy policy URL, 17+ age rating (alcohol) 🧑
 - [ ] Decide on an app icon (it was on the "revise later" list) 🤝
 
@@ -70,7 +70,7 @@ All engineering for 1.0 is done. `Scripts/release.sh` archives, signs, notarizes
 
 ### 6. FuelTrack
 The 1.0 build settings, privacy manifest and validation are done.
-- [ ] Deploy the CloudKit schema from Development to Production 🧑 *(blocks release: sync breaks without it)*
+- [x] Deploy the CloudKit schema from Development to Production (done 2026-11-08; `CD_Car` and `CD_FuelEntry`) 🧑
 - [ ] Check the receipt-scanning extraction and the CSV import (0.5 items) 🤝
 - [ ] Add more receipt-parser test fixtures beyond the 3 "oncue_regular" cases 🤖
 - [ ] Fix the first-launch slowness when moving from Log to Map or Stats on iOS 🤖
@@ -91,7 +91,7 @@ The 1.0 build settings, privacy manifest and validation are done.
 ### 8. DateGlow
 - [ ] 0.6: App Group + shared store, a widget target, iOS and Mac widgets, widget deep links, tappable menu bar rows 🤖
 - [ ] Fill in 0.7–1.0 (currently empty) and an App Store checklist like FuelTrack's 🤝
-- [ ] Deploy the CloudKit schema to Production before its first release 🧑
+- [x] Deploy the CloudKit schema to Production (done 2026-11-08) 🧑
 
 ### 9. Bellwether (iPhone + Watch)
 - [ ] An app icon (it has none yet) 🤝
@@ -146,7 +146,7 @@ Rough times, assuming evenings and weekends. Each week ends with something shipp
 1. ~~Waymark Study: set `MAIL_FROM` and `APP_URL` on the host~~ (already set).
 2. Decide: individual or company developer account, and the studio name and domain. Start a D-U-N-S request if going the company route.
 3. Apple paperwork in one sitting: Developer ID certificate, `notarytool` profile, and App Store Connect records for HLB, QuoteBloom, CellarStories and FuelTrack (1–2 h).
-4. Deploy CloudKit schemas to Production for QuoteBloom, FuelTrack, DateGlow and CellarStories (about 10 min each).
+4. Deploy CloudKit schemas to Production: FuelTrack, DateGlow and CellarStories done 2026-11-08. QuoteBloom still needs a development build to sync first (see its section).
 
 ### Week 2 · Nov 9–15 · High Low Buffalo and QuoteBloom (~6 h)
 1. HLB: TestFlight upload, demo account, review notes, screenshots, submit.
@@ -195,4 +195,4 @@ JobTrack's distribution decision and 0.6 polish, DateGlow widgets, the Bellwethe
 - Studio site: https://nmuschin.github.io/switchbacklabs/ (brand page at `/brand.html`)
 - Live web apps: High Low Buffalo at https://www.highlowbuffaloapp.com, CellarStories at https://cellarstories.app, Cite It Right at https://citeitright.org
 - Email (Resend, sending only): `updates.cellarstories.app`, `updates.waymarkstudy.com`, `highlowbuffaloapp.com`. `hello@highlowbuffaloapp.com` forwards to Gmail.
-- iCloud apps that need a CloudKit schema in Production: QuoteBloom, FuelTrack, DateGlow, CellarStories, JobTrack, Netmap.
+- iCloud apps that need a CloudKit schema in Production: QuoteBloom, JobTrack, Netmap. Done: FuelTrack, DateGlow, CellarStories. To check one: CloudKit Console → container → switch the P/D badge at the top → Schema → Record Types; Production should list the app's types, not just the built-in `Users`.
