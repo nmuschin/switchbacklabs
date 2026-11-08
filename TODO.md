@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-08: Waymark email was already set up; CloudKit schemas deployed for QuoteBloom, FuelTrack, DateGlow and CellarStories) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
+Built on 2026-11-05 (last updated 2026-11-08: Waymark email already set up; CloudKit schemas deployed for QuoteBloom, FuelTrack, DateGlow and CellarStories; QuoteBloom sync and favorites fixed) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -43,7 +43,7 @@ Everything for 1.0 is done except the listing.
 - [ ] Description, using the draft in `docs/app-store-listing.md` 🤝
 - [x] CloudKit schema in Production (done 2026-11-08): `UserQuote` and `Favorite`, each with a QUERYABLE `recordName` index, which the app's fetch-all sync queries need 🧑
 - [ ] Privacy policy page declaring CloudKit and local notifications: `/privacy/quotebloom.html` in switchbacklabs#3 🤝
-- [ ] Make iCloud sync more forgiving (`QuoteBloom/Models/CloudKitSyncService.swift`, `QuoteStore.swift`): treat a missing record type as "no records yet" instead of failing the whole sync, and stop the `try?` on single saves (add, edit, star, delete) from hiding errors, so a failed save shows in Settings and is retried on the next Sync Now 🤖
+- [x] iCloud sync is more forgiving: unsent changes are queued and retried, errors show in Settings, and a missing record type no longer fails the sync. The same PR fixed favorites not redrawing on iOS and macOS. Merged in nmuschin/QuoteBloom#3, tested on both platforms 2026-11-08 🤝
 - [ ] Optional, after launch: a Mac widget. The widget code already handles macOS; the target needs macOS added, the App Sandbox entitlement and the Mac runpath. 🤖
 
 ### 3. Cite It Right (Apple app)
@@ -134,7 +134,7 @@ Only a README so far: "Project looking at the cost of diabetes and the shift to 
 - [ ] Add App Store and website links to the app grid as each app ships 🤖
 - [ ] Branding round, as planned: icons for Bellwether and CellarStories (HLB's is done) 🤝
 - [x] **Shared working preferences in every repo.** A short "Working preferences" section in each of the 14 repos' `CLAUDE.md`, pointing at the full version in nmuschin/CodeAI. Merged 2026-11-05. 🤖
-- [ ] Delete the leftover branches (the "Delete branch" button on each merged PR; I can't delete branches from a session): `claude/studio-site`, `claude/brand-resources` (switchbacklabs), `claude/waymark-brand-icons` (waymarkstudy), `claude/todo-update-nov5` and `claude/todo-hlb-icon` (switchbacklabs), `claude/working-preferences` in the 13 other repos, `claude/hlb-gradient-tile` (HLB), `claude/hlb-nickname` (CodeAI) and `claude/eloquent-curie-sw2h86` (ClassroomDesigner). 🧑
+- [ ] Delete the leftover branches (the "Delete branch" button on each merged PR; I can't delete branches from a session): `claude/studio-site`, `claude/brand-resources` (switchbacklabs), `claude/waymark-brand-icons` (waymarkstudy), `claude/todo-update-nov5` and `claude/todo-hlb-icon` (switchbacklabs), `claude/working-preferences` in the 13 other repos, `claude/hlb-gradient-tile` (HLB), `claude/forgiving-icloud-sync` (QuoteBloom), `claude/todo-waymark-mail` and `claude/todo-quotebloom-sync` (switchbacklabs), `claude/hlb-nickname` (CodeAI) and `claude/eloquent-curie-sw2h86` (ClassroomDesigner). 🧑
 - [ ] Netmap's default branch is `claude/confident-bohr-i73ycp`: rename it to `main` (Settings → Branches) 🧑
 
 ---
