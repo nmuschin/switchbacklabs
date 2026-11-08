@@ -43,6 +43,7 @@ Everything for 1.0 is done except the listing.
 - [ ] Description, using the draft in `docs/app-store-listing.md` 🤝
 - [x] CloudKit schema in Production (done 2026-11-08): `UserQuote` and `Favorite`, each with a QUERYABLE `recordName` index, which the app's fetch-all sync queries need 🧑
 - [ ] Privacy policy page declaring CloudKit and local notifications: `/privacy/quotebloom.html` in switchbacklabs#3 🤝
+- [ ] Make iCloud sync more forgiving (`QuoteBloom/Models/CloudKitSyncService.swift`, `QuoteStore.swift`): treat a missing record type as "no records yet" instead of failing the whole sync, and stop the `try?` on single saves (add, edit, star, delete) from hiding errors, so a failed save shows in Settings and is retried on the next Sync Now 🤖
 - [ ] Optional, after launch: a Mac widget. The widget code already handles macOS; the target needs macOS added, the App Sandbox entitlement and the Mac runpath. 🤖
 
 ### 3. Cite It Right (Apple app)
