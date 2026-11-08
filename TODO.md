@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-06: HLB's new icon landed) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
+Built on 2026-11-05 (last updated 2026-11-08: Waymark email was already set up) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -16,7 +16,7 @@ Built on 2026-11-05 (last updated 2026-11-06: HLB's new icon landed) from every 
 ## Tier 0 — Fix now (people can hit these today)
 
 - [x] **CellarStories: the "Continue with Apple" button.** Already hidden since 2026-10-20 behind `APPLE_SIGN_IN_ENABLED = false`; its `TODO.md` was out of date (fixed in nmuschin/CellarStories#1). To bring it back: configure the Apple provider (`docs/deployment-guide.md` C3), then flip the flag. 🧑
-- [ ] **Waymark Study: password-reset emails only reach your own address.** The sending domain `updates.waymarkstudy.com` is already verified in Resend (checked 2026-11-05), so what's left is setting `MAIL_FROM="Waymark Study <no-reply@updates.waymarkstudy.com>"` on the host, plus `APP_URL` as the production URL (link previews need it), then redeploying. 🧑
+- [x] **Waymark Study: password-reset emails.** The sending domain `updates.waymarkstudy.com` is verified in Resend, and `MAIL_FROM` and `APP_URL` were already set on the host (confirmed 2026-11-08). Worth one test: request a reset for a second address you own and check it arrives. 🧑
 - [x] **QuoteBloom: `TODO.md` was copied into the app bundle.** Fixed in nmuschin/QuoteBloom#1, merged 2026-11-05. The same PR fixed the macOS build: the iOS-only widget is now embedded only in the iOS build. Confirmed in Xcode on iOS and macOS. 🤝
 
 ## Decide this week (these have lead time and block several launches)
@@ -143,7 +143,7 @@ Only a README so far: "Project looking at the cost of diabetes and the shift to 
 Rough times, assuming evenings and weekends. Each week ends with something shipped or submitted. If a week slips, push the whole plan back a week rather than starting the next app early.
 
 ### Week 1 · Nov 5–8 · decisions and paperwork (~3 h)
-1. Waymark Study: set `MAIL_FROM` and `APP_URL` on the host and redeploy (15 min).
+1. ~~Waymark Study: set `MAIL_FROM` and `APP_URL` on the host~~ (already set).
 2. Decide: individual or company developer account, and the studio name and domain. Start a D-U-N-S request if going the company route.
 3. Apple paperwork in one sitting: Developer ID certificate, `notarytool` profile, and App Store Connect records for HLB, QuoteBloom, CellarStories and FuelTrack (1–2 h).
 4. Deploy CloudKit schemas to Production for QuoteBloom, FuelTrack, DateGlow and CellarStories (about 10 min each).
