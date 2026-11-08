@@ -121,3 +121,20 @@ nav a[aria-current="page"] { color: var(--ink); }
   .app-grid { grid-template-columns: 1fr; }
   .hero { padding-top: 32px; padding-bottom: 48px; }
 }
+
+/* Privacy and support pages */
+.prose { max-width: 760px; padding-top: 40px; padding-bottom: 72px; }
+.prose h1 { font-size: clamp(2rem, 5vw, 2.75rem); margin-bottom: 8px; }
+.prose h2 { font-size: 1.25rem; margin: 36px 0 8px; }
+.prose h3 { font-size: 1.05rem; margin: 24px 0 4px; }
+.prose p, .prose li { color: var(--gray); }
+.prose strong { color: var(--ink); }
+.prose ul { padding-left: 1.2em; }
+.prose li { margin-bottom: 6px; }
+.prose .summary { font-size: 1.15rem; color: var(--ink); }
+.crumb { margin: 0 0 8px; font-size: 0.9rem; }
+.updated { margin: 0 0 24px; font-size: 0.9rem; }
+.prose .policy-list { list-style: none; padding: 0; margin: 28px 0; display: grid; gap: 10px; }
+.policy-list li { display: flex; flex-direction: column; gap: 2px; padding: 16px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; margin: 0; }
+.policy-list a { font-weight: 700; font-size: 1.05rem; text-decoration: none; }
+.policy-list span { font-size: 0.95rem; }
