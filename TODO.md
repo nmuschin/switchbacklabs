@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-06: HLB's new icon landed) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
+Built on 2026-11-05 (last updated 2026-11-08: Waymark email was already set up; CloudKit schemas deployed for QuoteBloom, FuelTrack, DateGlow and CellarStories) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -16,7 +16,7 @@ Built on 2026-11-05 (last updated 2026-11-06: HLB's new icon landed) from every 
 ## Tier 0 — Fix now (people can hit these today)
 
 - [x] **CellarStories: the "Continue with Apple" button.** Already hidden since 2026-10-20 behind `APPLE_SIGN_IN_ENABLED = false`; its `TODO.md` was out of date (fixed in nmuschin/CellarStories#1). To bring it back: configure the Apple provider (`docs/deployment-guide.md` C3), then flip the flag. 🧑
-- [ ] **Waymark Study: password-reset emails only reach your own address.** The sending domain `updates.waymarkstudy.com` is already verified in Resend (checked 2026-11-05), so what's left is setting `MAIL_FROM="Waymark Study <no-reply@updates.waymarkstudy.com>"` on the host, plus `APP_URL` as the production URL (link previews need it), then redeploying. 🧑
+- [x] **Waymark Study: password-reset emails.** The sending domain `updates.waymarkstudy.com` is verified in Resend, and `MAIL_FROM` and `APP_URL` were already set on the host (confirmed 2026-11-08). Worth one test: request a reset for a second address you own and check it arrives. 🧑
 - [x] **QuoteBloom: `TODO.md` was copied into the app bundle.** Fixed in nmuschin/QuoteBloom#1, merged 2026-11-05. The same PR fixed the macOS build: the iOS-only widget is now embedded only in the iOS build. Confirmed in Xcode on iOS and macOS. 🤝
 
 ## Decide this week (these have lead time and block several launches)
@@ -41,8 +41,9 @@ Web is live. iOS milestones I0–I6 and Phase 2 (Friends, History, Settings, Wid
 Everything for 1.0 is done except the listing.
 - [ ] Screenshots (iPhone, iPad, Mac) 🧑
 - [ ] Description, using the draft in `docs/app-store-listing.md` 🤝
-- [ ] Deploy the CloudKit schema from Development to Production in the CloudKit Dashboard, so iCloud sync works in the App Store build 🧑
+- [x] CloudKit schema in Production (done 2026-11-08): `UserQuote` and `Favorite`, each with a QUERYABLE `recordName` index, which the app's fetch-all sync queries need 🧑
 - [ ] Privacy policy page declaring CloudKit and local notifications: `/privacy/quotebloom.html` in switchbacklabs#3 🤝
+- [ ] Make iCloud sync more forgiving (`QuoteBloom/Models/CloudKitSyncService.swift`, `QuoteStore.swift`): treat a missing record type as "no records yet" instead of failing the whole sync, and stop the `try?` on single saves (add, edit, star, delete) from hiding errors, so a failed save shows in Settings and is retried on the next Sync Now 🤖
 - [ ] Optional, after launch: a Mac widget. The widget code already handles macOS; the target needs macOS added, the App Sandbox entitlement and the Mac runpath. 🤖
 
 ### 3. Cite It Right (Apple app)
@@ -56,7 +57,7 @@ Web went live on Oct 20. The iOS app is feature-complete for 1.0.
 - [ ] Import your real journal (`.winenote` → `/import`) and check scores and photos survive, and that re-imports don't duplicate 🧑
 - [ ] Re-run the acceptance test live with a friend on a real phone 🧑
 - [ ] Test CloudKit sync across iPhone ⇄ iPhone and iPhone ⇄ Mac 🧑
-- [ ] Deploy the CloudKit schema from Development to Production before submitting 🧑
+- [x] Deploy the CloudKit schema from Development to Production (done 2026-11-08) 🧑
 - [ ] Submit iOS: App Store Connect record, screenshots, privacy policy URL, 17+ age rating (alcohol) 🧑
 - [ ] Decide on an app icon (it was on the "revise later" list) 🤝
 
@@ -70,7 +71,7 @@ All engineering for 1.0 is done. `Scripts/release.sh` archives, signs, notarizes
 
 ### 6. FuelTrack
 The 1.0 build settings, privacy manifest and validation are done.
-- [ ] Deploy the CloudKit schema from Development to Production 🧑 *(blocks release: sync breaks without it)*
+- [x] Deploy the CloudKit schema from Development to Production (done 2026-11-08; `CD_Car` and `CD_FuelEntry`) 🧑
 - [ ] Check the receipt-scanning extraction and the CSV import (0.5 items) 🤝
 - [ ] Add more receipt-parser test fixtures beyond the 3 "oncue_regular" cases 🤖
 - [ ] Fix the first-launch slowness when moving from Log to Map or Stats on iOS 🤖
@@ -91,7 +92,7 @@ The 1.0 build settings, privacy manifest and validation are done.
 ### 8. DateGlow
 - [ ] 0.6: App Group + shared store, a widget target, iOS and Mac widgets, widget deep links, tappable menu bar rows 🤖
 - [ ] Fill in 0.7–1.0 (currently empty) and an App Store checklist like FuelTrack's 🤝
-- [ ] Deploy the CloudKit schema to Production before its first release 🧑
+- [x] Deploy the CloudKit schema to Production (done 2026-11-08) 🧑
 
 ### 9. Bellwether (iPhone + Watch)
 - [ ] An app icon (it has none yet) 🤝
@@ -143,10 +144,10 @@ Only a README so far: "Project looking at the cost of diabetes and the shift to 
 Rough times, assuming evenings and weekends. Each week ends with something shipped or submitted. If a week slips, push the whole plan back a week rather than starting the next app early.
 
 ### Week 1 · Nov 5–8 · decisions and paperwork (~3 h)
-1. Waymark Study: set `MAIL_FROM` and `APP_URL` on the host and redeploy (15 min).
+1. ~~Waymark Study: set `MAIL_FROM` and `APP_URL` on the host~~ (already set).
 2. Decide: individual or company developer account, and the studio name and domain. Start a D-U-N-S request if going the company route.
 3. Apple paperwork in one sitting: Developer ID certificate, `notarytool` profile, and App Store Connect records for HLB, QuoteBloom, CellarStories and FuelTrack (1–2 h).
-4. Deploy CloudKit schemas to Production for QuoteBloom, FuelTrack, DateGlow and CellarStories (about 10 min each).
+4. ~~Deploy CloudKit schemas to Production for QuoteBloom, FuelTrack, DateGlow and CellarStories~~ (all done 2026-11-08).
 
 ### Week 2 · Nov 9–15 · High Low Buffalo and QuoteBloom (~6 h)
 1. HLB: TestFlight upload, demo account, review notes, screenshots, submit.
@@ -195,4 +196,4 @@ JobTrack's distribution decision and 0.6 polish, DateGlow widgets, the Bellwethe
 - Studio site: https://nmuschin.github.io/switchbacklabs/ (brand page at `/brand.html`)
 - Live web apps: High Low Buffalo at https://www.highlowbuffaloapp.com, CellarStories at https://cellarstories.app, Cite It Right at https://citeitright.org
 - Email (Resend, sending only): `updates.cellarstories.app`, `updates.waymarkstudy.com`, `highlowbuffaloapp.com`. `hello@highlowbuffaloapp.com` forwards to Gmail.
-- iCloud apps that need a CloudKit schema in Production: QuoteBloom, FuelTrack, DateGlow, CellarStories, JobTrack, Netmap.
+- iCloud apps that need a CloudKit schema in Production: JobTrack, Netmap. Done: QuoteBloom, FuelTrack, DateGlow, CellarStories. To check one: CloudKit Console → container → switch the P/D badge at the top → Schema → Record Types; Production should list the app's types, not just the built-in `Users`.
