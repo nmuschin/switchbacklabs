@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-08: Waymark email already set up; CloudKit schemas deployed for QuoteBloom, FuelTrack, DateGlow and CellarStories; QuoteBloom sync and favorites fixed) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
+Built on 2026-11-05 (last updated 2026-11-10: organization developer account decided; FuelTrack's App Store name; netmap's default branch) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -21,9 +21,9 @@ Built on 2026-11-05 (last updated 2026-11-08: Waymark email already set up; Clou
 
 ## Decide this week (these have lead time and block several launches)
 
-- [ ] **Publish as yourself or as a company?** The App Store shows the developer's legal name. An individual Apple Developer account shows your personal name; showing a studio name needs an organization account, which requires a legal entity (such as an LLC) and a free D-U-N-S number, and that can take a week or two. Decide before the first submission, because changing the seller later means transferring every app. 🧑
+- [ ] **Developer account: going with an organization account** (decided 2026-11-10, to keep your legal name off the App Store). An individual account shows your legal name as the seller; an organization account shows the company's legal name instead. Apple doesn't accept a DBA or trade name, so this needs a real legal entity. In order: (1) pick the studio name; (2) form an LLC under that name, and ask about a state or registered-agent setup that keeps your name out of public filings; (3) EIN; (4) D-U-N-S number (free, can take a week or two); (5) the domain, with a public website and an email at it, which Apple checks; (6) enroll the organization ($99/year); (7) move the apps over with App Transfer or recreate their records. **Until then, don't release anything publicly**, because the first public release shows the seller name. Internal TestFlight is fine. 🧑
 - [ ] **Studio name and domain** (Saturday's reminder). It feeds the developer name, the contact email for the privacy and support pages, and the website address. 🧑
-- [ ] **Start the Apple paperwork in one sitting:** the Developer ID certificate and `notarytool` profile (MarkdownDoctor), and App Store Connect records for High Low Buffalo, QuoteBloom, CellarStories and FuelTrack. 🧑
+- [ ] **Start the Apple paperwork in one sitting:** the Developer ID certificate and `notarytool` profile (MarkdownDoctor), and App Store Connect records for High Low Buffalo, QuoteBloom, Cite It Right, CellarStories and FuelTrack. FuelTrack's record exists as "FuelTrack: Gas & Mileage Log" (2026-11-10). These are on the individual account for now; see the item above. 🧑
 
 ## Tier 1 — Ship what's built (closest to the finish line)
 
@@ -72,6 +72,7 @@ All engineering for 1.0 is done. `Scripts/release.sh` archives, signs, notarizes
 ### 6. FuelTrack
 The 1.0 build settings, privacy manifest and validation are done.
 - [x] Deploy the CloudKit schema from Development to Production (done 2026-11-08; `CD_Car` and `CD_FuelEntry`) 🧑
+- [x] App Store Connect record created 2026-11-10 as **FuelTrack: Gas & Mileage Log**, because "FuelTrack" was taken. The name under the icon stays FuelTrack 🧑
 - [ ] Check the receipt-scanning extraction and the CSV import (0.5 items) 🤝
 - [ ] Add more receipt-parser test fixtures beyond the 3 "oncue_regular" cases 🤖
 - [ ] Fix the first-launch slowness when moving from Log to Map or Stats on iOS 🤖
@@ -150,6 +151,7 @@ Rough times, assuming evenings and weekends. Each week ends with something shipp
 4. ~~Deploy CloudKit schemas to Production for QuoteBloom, FuelTrack, DateGlow and CellarStories~~ (all done 2026-11-08).
 
 ### Week 2 · Nov 9–15 · High Low Buffalo and QuoteBloom (~6 h)
+Get each app ready to submit, but hold the public release until the organization account exists (see "Decide this week").
 1. HLB: TestFlight upload, demo account, review notes, screenshots, submit.
 2. QuoteBloom: screenshots for iPhone, iPad and Mac, description from the draft, submit.
 3. Studio: once the contact email is chosen, merge the privacy and support pages so both apps have their URLs.
