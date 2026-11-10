@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-08: Waymark email was already set up; CloudKit schemas deployed for QuoteBloom, FuelTrack, DateGlow and CellarStories) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
+Built on 2026-11-05 (last updated 2026-11-10: App Store Connect records for five apps; organization developer account decided; netmap's default branch) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -21,15 +21,17 @@ Built on 2026-11-05 (last updated 2026-11-08: Waymark email was already set up; 
 
 ## Decide this week (these have lead time and block several launches)
 
-- [ ] **Publish as yourself or as a company?** The App Store shows the developer's legal name. An individual Apple Developer account shows your personal name; showing a studio name needs an organization account, which requires a legal entity (such as an LLC) and a free D-U-N-S number, and that can take a week or two. Decide before the first submission, because changing the seller later means transferring every app. 🧑
+- [ ] **Developer account: going with an organization account** (decided 2026-11-10, to keep your legal name off the App Store). An individual account shows your legal name as the seller; an organization account shows the company's legal name instead. Apple doesn't accept a DBA or trade name, so this needs a real legal entity. In order: (1) pick the studio name; (2) form an LLC under that name, and ask about a state or registered-agent setup that keeps your name out of public filings; (3) EIN; (4) D-U-N-S number (free, can take a week or two); (5) the domain, with a public website and an email at it, which Apple checks; (6) enroll the organization ($99/year); (7) move the apps over with App Transfer or recreate their records. **Until then, don't release anything publicly**, because the first public release shows the seller name. Internal TestFlight is fine. 🧑
 - [ ] **Studio name and domain** (Saturday's reminder). It feeds the developer name, the contact email for the privacy and support pages, and the website address. 🧑
-- [ ] **Start the Apple paperwork in one sitting:** the Developer ID certificate and `notarytool` profile (MarkdownDoctor), and App Store Connect records for High Low Buffalo, QuoteBloom, CellarStories and FuelTrack. 🧑
+- [x] **App Store Connect records** for High Low Buffalo, QuoteBloom, Cite It Right, CellarStories and FuelTrack (as "FuelTrack: Gas & Mileage Log"), created 2026-11-10. They're on the individual account for now; see the item above. 🧑
+- [ ] **The rest of the Apple paperwork:** the Developer ID certificate and `notarytool` profile (MarkdownDoctor). Do this on the organization account if it's ready, since the certificate carries the account's name. 🧑
 
 ## Tier 1 — Ship what's built (closest to the finish line)
 
 ### 1. High Low Buffalo (HLB) for iPhone
 Web is live. iOS milestones I0–I6 and Phase 2 (Friends, History, Settings, Widget) are built, and the listing text was committed on Oct 29.
-- [ ] App Store Connect app record + a demo account for App Review 🧑
+- [x] App Store Connect app record (2026-11-10) 🧑
+- [x] Demo account for App Review: `review@highlowbuffaloapp.com` (forwards to Gmail), with a friend and shared days (2026-11-10). Check it still exists before each submission, because reviewers may test Delete account 🧑
 - [ ] First TestFlight upload (`ios/README.md`) 🧑
 - [ ] App Review notes: delete account, report and block paths (draft in `PLAN-ios.md` §8) 🤝
 - [ ] Screenshots + the privacy "nutrition label" (email, name, user content, no tracking) 🧑
@@ -39,18 +41,20 @@ Web is live. iOS milestones I0–I6 and Phase 2 (Friends, History, Settings, Wid
 
 ### 2. QuoteBloom
 Everything for 1.0 is done except the listing.
+- [x] App Store Connect record (2026-11-10) 🧑
 - [ ] Screenshots (iPhone, iPad, Mac) 🧑
 - [ ] Description, using the draft in `docs/app-store-listing.md` 🤝
 - [x] CloudKit schema in Production (done 2026-11-08): `UserQuote` and `Favorite`, each with a QUERYABLE `recordName` index, which the app's fetch-all sync queries need 🧑
 - [ ] Privacy policy page declaring CloudKit and local notifications: `/privacy/quotebloom.html` in switchbacklabs#3 🤝
-- [ ] Make iCloud sync more forgiving (`QuoteBloom/Models/CloudKitSyncService.swift`, `QuoteStore.swift`): treat a missing record type as "no records yet" instead of failing the whole sync, and stop the `try?` on single saves (add, edit, star, delete) from hiding errors, so a failed save shows in Settings and is retried on the next Sync Now 🤖
+- [x] iCloud sync is more forgiving: unsent changes are queued and retried, errors show in Settings, and a missing record type no longer fails the sync. The same PR fixed favorites not redrawing on iOS and macOS. Merged in nmuschin/QuoteBloom#3, tested on both platforms 2026-11-08 🤝
 - [ ] Optional, after launch: a Mac widget. The widget code already handles macOS; the target needs macOS added, the App Sandbox entitlement and the Mac runpath. 🤖
 
 ### 3. Cite It Right (Apple app)
 Phases 1–5 are merged. Phase 6 (Spanish, accessibility, icon, TestFlight prep) is written and waiting for its first Xcode build.
 - [ ] First build of phase 6 in Xcode; fix whatever it turns up 🤝
 - [ ] Test the live camera features (barcode, photo) on a real iPhone 🧑
-- [ ] TestFlight: identifiers, App Store Connect record, App Privacy, uploads for iOS and Mac (`docs/testflight.md`) 🧑
+- [x] Bundle ID and App Store Connect record (2026-11-10) 🧑
+- [ ] TestFlight: App Privacy, uploads for iOS and Mac (`docs/testflight.md`) 🧑
 
 ### 4. CellarStories
 Web went live on Oct 20. The iOS app is feature-complete for 1.0.
@@ -58,7 +62,8 @@ Web went live on Oct 20. The iOS app is feature-complete for 1.0.
 - [ ] Re-run the acceptance test live with a friend on a real phone 🧑
 - [ ] Test CloudKit sync across iPhone ⇄ iPhone and iPhone ⇄ Mac 🧑
 - [x] Deploy the CloudKit schema from Development to Production (done 2026-11-08) 🧑
-- [ ] Submit iOS: App Store Connect record, screenshots, privacy policy URL, 17+ age rating (alcohol) 🧑
+- [x] App Store Connect record (2026-11-10) 🧑
+- [ ] Submit iOS: screenshots, privacy policy URL, 17+ age rating (alcohol) 🧑
 - [ ] Decide on an app icon (it was on the "revise later" list) 🤝
 
 ### 5. MarkdownDoctor (Mac)
@@ -72,6 +77,7 @@ All engineering for 1.0 is done. `Scripts/release.sh` archives, signs, notarizes
 ### 6. FuelTrack
 The 1.0 build settings, privacy manifest and validation are done.
 - [x] Deploy the CloudKit schema from Development to Production (done 2026-11-08; `CD_Car` and `CD_FuelEntry`) 🧑
+- [x] App Store Connect record created 2026-11-10 as **FuelTrack: Gas & Mileage Log**, because "FuelTrack" was taken. The name under the icon stays FuelTrack 🧑
 - [ ] Check the receipt-scanning extraction and the CSV import (0.5 items) 🤝
 - [ ] Add more receipt-parser test fixtures beyond the 3 "oncue_regular" cases 🤖
 - [ ] Fix the first-launch slowness when moving from Log to Map or Stats on iOS 🤖
@@ -134,8 +140,8 @@ Only a README so far: "Project looking at the cost of diabetes and the shift to 
 - [ ] Add App Store and website links to the app grid as each app ships 🤖
 - [ ] Branding round, as planned: icons for Bellwether and CellarStories (HLB's is done) 🤝
 - [x] **Shared working preferences in every repo.** A short "Working preferences" section in each of the 14 repos' `CLAUDE.md`, pointing at the full version in nmuschin/CodeAI. Merged 2026-11-05. 🤖
-- [ ] Delete the leftover branches (the "Delete branch" button on each merged PR; I can't delete branches from a session): `claude/studio-site`, `claude/brand-resources` (switchbacklabs), `claude/waymark-brand-icons` (waymarkstudy), `claude/todo-update-nov5` and `claude/todo-hlb-icon` (switchbacklabs), `claude/working-preferences` in the 13 other repos, `claude/hlb-gradient-tile` (HLB), `claude/hlb-nickname` (CodeAI) and `claude/eloquent-curie-sw2h86` (ClassroomDesigner). 🧑
-- [ ] Netmap's default branch is `claude/confident-bohr-i73ycp`: rename it to `main` (Settings → Branches) 🧑
+- [ ] Delete the last leftover branches (rechecked 2026-11-10; the "Delete branch" button on each merged PR, since I can't delete branches from a session): `claude/scripts-and-claude-md` and `claude/hlb-nickname` (CodeAI), `claude/working-preferences` (switchbacklabs, diabetes-project), `milestone/msl-personal` (JobTrack, already on `main`). Branches with open PRs go once those merge. 🧑
+- [x] Netmap's default branch renamed from `claude/confident-bohr-i73ycp` to `main` (2026-11-10) 🧑
 
 ---
 
@@ -146,10 +152,11 @@ Rough times, assuming evenings and weekends. Each week ends with something shipp
 ### Week 1 · Nov 5–8 · decisions and paperwork (~3 h)
 1. ~~Waymark Study: set `MAIL_FROM` and `APP_URL` on the host~~ (already set).
 2. Decide: individual or company developer account, and the studio name and domain. Start a D-U-N-S request if going the company route.
-3. Apple paperwork in one sitting: Developer ID certificate, `notarytool` profile, and App Store Connect records for HLB, QuoteBloom, CellarStories and FuelTrack (1–2 h).
+3. Apple paperwork: ~~App Store Connect records for HLB, QuoteBloom, Cite It Right, CellarStories and FuelTrack~~ (done 2026-11-10). Still to do: the Developer ID certificate and `notarytool` profile.
 4. ~~Deploy CloudKit schemas to Production for QuoteBloom, FuelTrack, DateGlow and CellarStories~~ (all done 2026-11-08).
 
 ### Week 2 · Nov 9–15 · High Low Buffalo and QuoteBloom (~6 h)
+Get each app ready to submit, but hold the public release until the organization account exists (see "Decide this week").
 1. HLB: TestFlight upload, demo account, review notes, screenshots, submit.
 2. QuoteBloom: screenshots for iPhone, iPad and Mac, description from the draft, submit.
 3. Studio: once the contact email is chosen, merge the privacy and support pages so both apps have their URLs.
