@@ -31,7 +31,7 @@ Built on 2026-11-05 (last updated 2026-11-10: App Store Connect records for five
 ### 1. High Low Buffalo (HLB) for iPhone
 Web is live. iOS milestones I0–I6 and Phase 2 (Friends, History, Settings, Widget) are built, and the listing text was committed on Oct 29.
 - [x] App Store Connect app record (2026-11-10) 🧑
-- [ ] A demo account for App Review 🧑
+- [x] Demo account for App Review: `review@highlowbuffaloapp.com` (forwards to Gmail), with a friend and shared days (2026-11-10). Check it still exists before each submission, because reviewers may test Delete account 🧑
 - [ ] First TestFlight upload (`ios/README.md`) 🧑
 - [ ] App Review notes: delete account, report and block paths (draft in `PLAN-ios.md` §8) 🤝
 - [ ] Screenshots + the privacy "nutrition label" (email, name, user content, no tracking) 🧑
