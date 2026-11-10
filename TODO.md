@@ -2,7 +2,7 @@
 
 *This file is public on the studio site, like everything in this repo.*
 
-Built on 2026-11-05 (last updated 2026-11-10: organization developer account decided; FuelTrack's App Store name; netmap's default branch) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
+Built on 2026-11-05 (last updated 2026-11-10: App Store Connect records for five apps; organization developer account decided; netmap's default branch) from every connected repo's TODO.md, PLAN*.md, ROADMAP.md, README "next steps", docs and code comments. When it was built, none of the repos had open GitHub issues or PRs, so everything here comes from those files. Covers 14 repos; netmap and diabetes-project were added on 2026-11-05.
 
 **How it's ordered:** first fixes for problems people can hit today, then apps that are built and only need launch steps, then feature work. Within each tier, the item that finishes an app comes before the one that starts something new.
 
@@ -23,13 +23,15 @@ Built on 2026-11-05 (last updated 2026-11-10: organization developer account dec
 
 - [ ] **Developer account: going with an organization account** (decided 2026-11-10, to keep your legal name off the App Store). An individual account shows your legal name as the seller; an organization account shows the company's legal name instead. Apple doesn't accept a DBA or trade name, so this needs a real legal entity. In order: (1) pick the studio name; (2) form an LLC under that name, and ask about a state or registered-agent setup that keeps your name out of public filings; (3) EIN; (4) D-U-N-S number (free, can take a week or two); (5) the domain, with a public website and an email at it, which Apple checks; (6) enroll the organization ($99/year); (7) move the apps over with App Transfer or recreate their records. **Until then, don't release anything publicly**, because the first public release shows the seller name. Internal TestFlight is fine. 🧑
 - [ ] **Studio name and domain** (Saturday's reminder). It feeds the developer name, the contact email for the privacy and support pages, and the website address. 🧑
-- [ ] **Start the Apple paperwork in one sitting:** the Developer ID certificate and `notarytool` profile (MarkdownDoctor), and App Store Connect records for High Low Buffalo, QuoteBloom, Cite It Right, CellarStories and FuelTrack. FuelTrack's record exists as "FuelTrack: Gas & Mileage Log" (2026-11-10). These are on the individual account for now; see the item above. 🧑
+- [x] **App Store Connect records** for High Low Buffalo, QuoteBloom, Cite It Right, CellarStories and FuelTrack (as "FuelTrack: Gas & Mileage Log"), created 2026-11-10. They're on the individual account for now; see the item above. 🧑
+- [ ] **The rest of the Apple paperwork:** the Developer ID certificate and `notarytool` profile (MarkdownDoctor). Do this on the organization account if it's ready, since the certificate carries the account's name. 🧑
 
 ## Tier 1 — Ship what's built (closest to the finish line)
 
 ### 1. High Low Buffalo (HLB) for iPhone
 Web is live. iOS milestones I0–I6 and Phase 2 (Friends, History, Settings, Widget) are built, and the listing text was committed on Oct 29.
-- [ ] App Store Connect app record + a demo account for App Review 🧑
+- [x] App Store Connect app record (2026-11-10) 🧑
+- [ ] A demo account for App Review 🧑
 - [ ] First TestFlight upload (`ios/README.md`) 🧑
 - [ ] App Review notes: delete account, report and block paths (draft in `PLAN-ios.md` §8) 🤝
 - [ ] Screenshots + the privacy "nutrition label" (email, name, user content, no tracking) 🧑
@@ -39,6 +41,7 @@ Web is live. iOS milestones I0–I6 and Phase 2 (Friends, History, Settings, Wid
 
 ### 2. QuoteBloom
 Everything for 1.0 is done except the listing.
+- [x] App Store Connect record (2026-11-10) 🧑
 - [ ] Screenshots (iPhone, iPad, Mac) 🧑
 - [ ] Description, using the draft in `docs/app-store-listing.md` 🤝
 - [x] CloudKit schema in Production (done 2026-11-08): `UserQuote` and `Favorite`, each with a QUERYABLE `recordName` index, which the app's fetch-all sync queries need 🧑
@@ -50,7 +53,8 @@ Everything for 1.0 is done except the listing.
 Phases 1–5 are merged. Phase 6 (Spanish, accessibility, icon, TestFlight prep) is written and waiting for its first Xcode build.
 - [ ] First build of phase 6 in Xcode; fix whatever it turns up 🤝
 - [ ] Test the live camera features (barcode, photo) on a real iPhone 🧑
-- [ ] TestFlight: identifiers, App Store Connect record, App Privacy, uploads for iOS and Mac (`docs/testflight.md`) 🧑
+- [x] Bundle ID and App Store Connect record (2026-11-10) 🧑
+- [ ] TestFlight: App Privacy, uploads for iOS and Mac (`docs/testflight.md`) 🧑
 
 ### 4. CellarStories
 Web went live on Oct 20. The iOS app is feature-complete for 1.0.
@@ -58,7 +62,8 @@ Web went live on Oct 20. The iOS app is feature-complete for 1.0.
 - [ ] Re-run the acceptance test live with a friend on a real phone 🧑
 - [ ] Test CloudKit sync across iPhone ⇄ iPhone and iPhone ⇄ Mac 🧑
 - [x] Deploy the CloudKit schema from Development to Production (done 2026-11-08) 🧑
-- [ ] Submit iOS: App Store Connect record, screenshots, privacy policy URL, 17+ age rating (alcohol) 🧑
+- [x] App Store Connect record (2026-11-10) 🧑
+- [ ] Submit iOS: screenshots, privacy policy URL, 17+ age rating (alcohol) 🧑
 - [ ] Decide on an app icon (it was on the "revise later" list) 🤝
 
 ### 5. MarkdownDoctor (Mac)
@@ -147,7 +152,7 @@ Rough times, assuming evenings and weekends. Each week ends with something shipp
 ### Week 1 · Nov 5–8 · decisions and paperwork (~3 h)
 1. ~~Waymark Study: set `MAIL_FROM` and `APP_URL` on the host~~ (already set).
 2. Decide: individual or company developer account, and the studio name and domain. Start a D-U-N-S request if going the company route.
-3. Apple paperwork in one sitting: Developer ID certificate, `notarytool` profile, and App Store Connect records for HLB, QuoteBloom, CellarStories and FuelTrack (1–2 h).
+3. Apple paperwork: ~~App Store Connect records for HLB, QuoteBloom, Cite It Right, CellarStories and FuelTrack~~ (done 2026-11-10). Still to do: the Developer ID certificate and `notarytool` profile.
 4. ~~Deploy CloudKit schemas to Production for QuoteBloom, FuelTrack, DateGlow and CellarStories~~ (all done 2026-11-08).
 
 ### Week 2 · Nov 9–15 · High Low Buffalo and QuoteBloom (~6 h)
