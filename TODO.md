@@ -134,8 +134,8 @@ Only a README so far: "Project looking at the cost of diabetes and the shift to 
 - [ ] Add App Store and website links to the app grid as each app ships 🤖
 - [ ] Branding round, as planned: icons for Bellwether and CellarStories (HLB's is done) 🤝
 - [x] **Shared working preferences in every repo.** A short "Working preferences" section in each of the 14 repos' `CLAUDE.md`, pointing at the full version in nmuschin/CodeAI. Merged 2026-11-05. 🤖
-- [ ] Delete the leftover branches (the "Delete branch" button on each merged PR; I can't delete branches from a session): `claude/studio-site`, `claude/brand-resources` (switchbacklabs), `claude/waymark-brand-icons` (waymarkstudy), `claude/todo-update-nov5` and `claude/todo-hlb-icon` (switchbacklabs), `claude/working-preferences` in the 13 other repos, `claude/hlb-gradient-tile` (HLB), `claude/forgiving-icloud-sync` (QuoteBloom), `claude/todo-waymark-mail` and `claude/todo-quotebloom-sync` (switchbacklabs), `claude/hlb-nickname` (CodeAI) and `claude/eloquent-curie-sw2h86` (ClassroomDesigner). 🧑
-- [ ] Netmap's default branch is `claude/confident-bohr-i73ycp`: rename it to `main` (Settings → Branches) 🧑
+- [ ] Delete the last leftover branches (rechecked 2026-11-10; the "Delete branch" button on each merged PR, since I can't delete branches from a session): `claude/scripts-and-claude-md` and `claude/hlb-nickname` (CodeAI), `claude/working-preferences` (switchbacklabs, diabetes-project), `milestone/msl-personal` (JobTrack, already on `main`). Branches with open PRs go once those merge. 🧑
+- [x] Netmap's default branch renamed from `claude/confident-bohr-i73ycp` to `main` (2026-11-10) 🧑
 
 ---
 
